@@ -121,3 +121,99 @@ To run the complete application stack (PostgreSQL DB, Backend, Frontend) locally
         ```bash
         docker-compose down -v
         ```
+
+## Regenerating and Re-Testing the Project
+
+If you make changes to the `setup.sh` script or simply want to start fresh with a clean project generation, follow these steps:
+
+1.  **Stop Running Containers (If Applicable):**
+    If you currently have the application running via `docker-compose`, navigate to the project directory (`output/my_project`) in your terminal and stop/remove the containers:
+    ```bash
+    docker-compose down -v
+    ```
+    *(Using `-v` also removes the database volume for a completely fresh start)*
+
+2.  **Navigate to Script Directory:**
+    Open your terminal and go back to the directory containing `setup.sh` and the `Dockerfile` for the script runner (e.g., `cd ..` if you were in `output/my_project`).
+    ```bash
+    # Example: If you were in output/my_project
+    cd ..
+    # Example: Make sure you are in the folder containing setup.sh
+    # cd C:\Users\Narcisse\Desktop\testProjetCda\Bash_Script_FSProject_Automation
+    ```
+
+3.  **Remove Previous Output:**
+    Delete the previously generated project directory.
+    ```bash
+    # On Linux/macOS/Git Bash/WSL
+    rm -rf output/my_project
+
+    # On Windows Command Prompt
+    rd /s /q output\my_project
+
+    # On Windows PowerShell
+    Remove-Item -Recurse -Force ./output/my_project
+    ```
+    *(Replace `my_project` if you used a custom name)*
+
+4.  **Rebuild Script Runner Image (If Script Changed):**
+    If you modified `setup.sh` or its `Dockerfile`, rebuild the `setup-test` image:
+    ```bash
+    docker build -t setup-test .
+    ```
+    *(If you didn't change the script or its Dockerfile, you can skip this rebuild step)*
+
+5.  **Create Output Directory (If Removed):**
+    Ensure the `output` directory exists.
+    ```bash
+    # On Linux/macOS/Git Bash/WSL
+    mkdir output
+
+    # On Windows Command Prompt
+    mkdir output
+
+    # On Windows PowerShell
+    New-Item -ItemType Directory -Force -Path "./output"
+    ```
+
+6.  **Run Project Generation Script:**
+    Execute the script via the Docker container again to generate the new project files in the `output` directory.
+
+    *   **On Linux/macOS/Git Bash/WSL:**
+        ```bash
+        docker run --rm -v "$(pwd)/output:/output" setup-test
+        ```
+    *   **On Windows PowerShell:**
+        ```powershell
+        docker run --rm -v "${PWD}/output:/output" setup-test
+        ```
+    *   **On Windows Command Prompt:**
+        ```cmd
+        docker run --rm -v "%cd%/output:/output" setup-test
+        ```
+
+7.  **Navigate to New Project:**
+    ```bash
+    cd output/my_project
+    ```
+    *(Replace `my_project` if needed)*
+
+8.  **Run Backend Integration Tests:**
+    ```bash
+    cd my_project_back/backend
+    mvn test
+    cd ../.. # Go back to project root
+    ```
+    *(Expect `BUILD SUCCESS`)*
+
+9.  **Run Full Application via Docker Compose:**
+    ```bash
+    docker-compose up --build
+    ```
+    *(Wait for services to start)*
+
+10. **Test in Browser:**
+    Open `http://localhost` and click the "Tester l'API" button.
+    *(Expect "Hello from Backend!")*
+
+11. **Shutdown:** Press `Ctrl+C` in the `docker-compose` terminal, then run `docker-compose down -v`.
