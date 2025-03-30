@@ -379,7 +379,7 @@ spring.jpa.show-sql=false # Keep prod logs cleaner
 # Or your prod schema
 spring.jpa.properties.hibernate.default_schema=public 
 # Ensure schema.sql/data.sql are never used
-spring.sql.init.mode=never 
+spring.sql.init.mode=NEVER 
 
 EOL
 # Verify file creation
