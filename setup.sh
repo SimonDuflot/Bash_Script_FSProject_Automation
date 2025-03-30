@@ -376,8 +376,11 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 # IMPORTANT: Use 'validate' or 'none' in production. Schema managed externally.
 spring.jpa.hibernate.ddl-auto=validate
 spring.jpa.show-sql=false # Keep prod logs cleaner
-spring.jpa.properties.hibernate.default_schema=public # Or your prod schema
-spring.sql.init.mode=never # Ensure schema.sql/data.sql are never used
+# Or your prod schema
+spring.jpa.properties.hibernate.default_schema=public 
+# Ensure schema.sql/data.sql are never used
+spring.sql.init.mode=never 
+
 EOL
 # Verify file creation
 if [ -f "${BACKEND_PROJECT_PATH}/src/main/resources/application-prod.properties" ]; then
