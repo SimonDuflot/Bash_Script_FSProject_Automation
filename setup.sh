@@ -155,6 +155,7 @@ package ${GROUP_ID}.${ARTIFACT_ID}.controller; // Use dots for package name
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.ResponseEntity; // Import ResponseEntity
 import org.springframework.http.HttpStatus; // Import HttpStatus
 
