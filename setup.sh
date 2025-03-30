@@ -103,8 +103,9 @@ unzip -q "${TEMP_ZIP}" -d "${BACKEND_TARGET_DIR}" || {
 # --- START CLEANUP SECTION ---
 echo "Success: Unziped file. Cleaning up backend project..."
 
-DEMO_APP_TEST_FILE="${BACKEND_PROJECT_PATH}/src/test/java/${GROUP_ID//.//}/${ARTIFACT_ID}/DemoApplicationTests.java" # Adjust class name if needed
 BACKEND_PROJECT_PATH="${BACKEND_TARGET_DIR}/${ARTIFACT_ID}"
+DEMO_APP_TEST_FILE="${BACKEND_PROJECT_PATH}/src/test/java/${GROUP_ID//.//}/${ARTIFACT_ID}/DemoApplicationTests.java"
+
 echo "[DEBUG] BACKEND_PROJECT_PATH is set to: ${BACKEND_PROJECT_PATH}" # Debug echo
 
 # Check if the target directory exists BEFORE removing
@@ -633,10 +634,8 @@ fi
 # --- Adjust script.js to use full URL ---
 echo "Adjusting frontend script.js to use absolute URL for API call..."
 FRONTEND_SCRIPT_FILE="${FRONTEND_TARGET_DIR}/script.js"
-# Use sed to replace the fetch URL - be careful with escaping special characters
 sed -i.bak "s|fetch('/api/test')|fetch('http://localhost:8080/api/test')|g" "${FRONTEND_SCRIPT_FILE}" && rm -f "${FRONTEND_SCRIPT_FILE}.bak" || {
-    echo "Error: Failed to update script.js fetch URL" >&2
-    # exit 1 # Optional: Decide if this is a fatal error
+    echo "Error: Failed to update script.js fetch URL" >&2 
 }
 echo "Frontend script.js adjusted."
 
