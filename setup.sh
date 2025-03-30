@@ -633,6 +633,8 @@ sed -i.bak "s|fetch('/api/test')|fetch('http://localhost:8080/api/test')|g" "${F
 }
 echo "Frontend script.js adjusted."
 
+
+
 # --- Final Steps ---
 cd "$ORIG_DIR" || exit
 echo "Success: Project setup complete in $(pwd)!"
