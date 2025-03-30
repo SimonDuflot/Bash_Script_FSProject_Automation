@@ -103,6 +103,7 @@ unzip -q "${TEMP_ZIP}" -d "${BACKEND_TARGET_DIR}" || {
 # --- START CLEANUP SECTION ---
 echo "Success: Unziped file. Cleaning up backend project..."
 
+DEMO_APP_TEST_FILE="${BACKEND_PROJECT_PATH}/src/test/java/${GROUP_ID//.//}/${ARTIFACT_ID}/DemoApplicationTests.java" # Adjust class name if needed
 BACKEND_PROJECT_PATH="${BACKEND_TARGET_DIR}/${ARTIFACT_ID}"
 echo "[DEBUG] BACKEND_PROJECT_PATH is set to: ${BACKEND_PROJECT_PATH}" # Debug echo
 
@@ -117,6 +118,7 @@ rm -fv "${BACKEND_PROJECT_PATH}/.gitattributes"
 rm -fv "${BACKEND_PROJECT_PATH}/HELP.md"
 rm -fv "${BACKEND_PROJECT_PATH}/mvnw"
 rm -fv "${BACKEND_PROJECT_PATH}/mvnw.cmd"
+rm -f "${DEMO_APP_TEST_FILE}"
 
 echo "Updating .gitignore..."
 
