@@ -160,6 +160,7 @@ import org.springframework.http.HttpStatus; // Import HttpStatus
 
 @RestController
 @RequestMapping("/api") // Base path for all API endpoints in this controller
+@CrossOrigin(origins = "http://localhost")
 public class TestController {
 
     @GetMapping("/test")
