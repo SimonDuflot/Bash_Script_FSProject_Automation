@@ -340,7 +340,7 @@ cat <<EOL > "${BACKEND_PROJECT_PATH}/src/main/resources/application-dev.properti
 # --- PostgreSQL Database (Dev) ---
 # Connects to local Postgres (likely running in Docker later)
 # Defaults assume Docker Compose setup: host='localhost', port=5432, db='devdb', user='devuser', pass='devpass'
-spring.datasource.url=jdbc:postgresql://\${DB_HOST:localhost}:\${DB_PORT:5432}/\${POSTGRES_DB:devdb}
+spring.datasource.url=jdbc:postgresql://\${DB_HOST:postgres}:\${DB_PORT:5432}/\${POSTGRES_DB:devdb}
 spring.datasource.username=\${POSTGRES_USER:devuser}
 spring.datasource.password=\${POSTGRES_PASSWORD:devpass}
 spring.datasource.driverClassName=org.postgresql.Driver
@@ -368,7 +368,7 @@ fi
 cat <<EOL > "${BACKEND_PROJECT_PATH}/src/main/resources/application-prod.properties"
 # --- PostgreSQL Database (Prod) ---
 # Values MUST be injected by environment variables in production
-spring.datasource.url=jdbc:postgresql://\${DB_HOST}:\${DB_PORT:5432}/\${POSTGRES_DB}
+spring.datasource.url=jdbc:postgresql://\${DB_HOST:postgres}:\${DB_PORT:5432}/\${POSTGRES_DB}
 spring.datasource.username=\${POSTGRES_USER}
 spring.datasource.password=\${POSTGRES_PASSWORD}
 spring.datasource.driverClassName=org.postgresql.Driver
