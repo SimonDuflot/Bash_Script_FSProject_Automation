@@ -34,7 +34,8 @@ This script is designed to be run inside a dedicated Docker container to ensure 
     # On Windows Command Prompt
     mkdir output
 
-    # On Windows PowerShell
+    # On Windows PowerShell, use 'pwsh' to change instance (C --> PS)
+    pwsh 
     New-Item -ItemType Directory -Force -Path "./output"
     ```
 
