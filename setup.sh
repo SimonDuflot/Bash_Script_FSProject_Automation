@@ -434,7 +434,7 @@ EXPOSE 8080
 
 # Command to run the application
 # Use exec form for better signal handling
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-Xmx512m", "-jar", "/app/app.jar"]
 
 # Optional: Add healthcheck instruction if needed later
 # HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 CMD curl -f http://localhost:8080/actuator/health || exit 1
