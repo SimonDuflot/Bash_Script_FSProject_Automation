@@ -539,7 +539,7 @@ FRONTEND_DOCKERFILE="${FRONTEND_TARGET_DIR}/Dockerfile"
 cat << EOF > "${FRONTEND_DOCKERFILE}"
 FROM nginx:stable-alpine
 RUN rm -f /usr/share/nginx/html/index.html /user/share/nginx/html/50x.html
-COPY . /usr/share/nginx/html/index
+COPY . /usr/share/nginx/html/
 EXPOSE 80
 EOF
 # Verify file creation
